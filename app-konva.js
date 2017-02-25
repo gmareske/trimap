@@ -161,14 +161,14 @@ const drawGraph = function() {
 
 }
 
-const stairs = function(x, y, width, height, direction = 1) {
+const stairs = function(x, y, width, height, direction = -1) {
   return new Konva.Shape({
 sceneFunc: function(context) {
     context.beginPath();
     context.moveTo(x,y);
     for (i = 1; i <= 5; i++){
-    context.lineTo(x + width*2*T_SIZE, y - T_SIZE*width);
-    context.lineTo(x + width*2*T_SIZE + 4 *i, y - T_SIZE*width + 6 * i);
+    context.lineTo(x + direction*width*2*T_SIZE, y - T_SIZE*width);
+    context.lineTo(x + direction*width*2*T_SIZE + 4 *i, y - T_SIZE*width + 6 * i);
     context.lineTo(x + 4*i, y +6 *i);
     context.closePath();
   }
@@ -221,7 +221,7 @@ function spawnWall() {
     } else { // left wall
 	direction = 1
     }
-    
+
     var wall = new Wall(500,500,width, height,direction);
     wall.on('mouseover', function() {
 	document.body.style.cursor = 'pointer';
