@@ -5,7 +5,9 @@ var stage = new Konva.Stage({
 });
 const DIRECTION = {
   RIGHT: -1,
-  LEFT: 1
+  LEFT: 1,
+  UP: 1,
+  DOWN: -1,
 };
 // set up layer
 var layer = new Konva.Layer();
@@ -127,16 +129,24 @@ const Wall = function(x,y,width,height,direction=-1) {
     });
 }
 // partial wall
-const partialWall = function(x,y,width,height,direction=-1) {
+const partialWall = function(x,y,width,height,direction=-1, pdirection) {
   return new Konva.Shape({
 sceneFunc: function(context) {
-    context.beginPath();
-    context.moveTo(x,y);
-    context.lineTo(x, y - T_SIZE*height);
-    context.lineTo(x +  direction*T_SIZE*2*width, y - (T_SIZE)*(height+width));
-    context.lineTo(x + direction*T_SIZE*2*width, y - T_SIZE * width);
-    context.closePath();
-    context.fillStrokeShape(this);
+    if (pdirection === -1 ) {
+      context.beginPath();
+      context.moveTo(x,y);
+      context.lineTo(x +  direction*T_SIZE*2*width, y - (T_SIZE)*(height+width));
+      context.lineTo(x + direction*T_SIZE*2*width, y - T_SIZE * width);
+      context.closePath();
+      context.fillStrokeShape(this);
+    } else {
+      context.beginPath();
+      context.moveTo(x,y);
+      context.lineTo(x, y - T_SIZE*height);
+      context.lineTo(x +  direction*T_SIZE*2*width, y - (T_SIZE)*(height+width));
+      context.closePath();
+      context.fillStrokeShape(this);
+    }
 },
 stroke: 'black',
 strokeWidth: 1,
@@ -255,11 +265,11 @@ function spawnWall() {
     }
     let pdirection = document.getElementsByName('partialWallDirections')[0].checked;
     if (pdirection) { // if up is checked
-	     pdirection = DIRECTION.RIGHT;
+	     pdirection = DIRECTION.UP;
     } else { // down is checked
-	     pdirection = DIRECTION.LEFT;
+	     pdirection = DIRECTION.DOWN;
     }
-    var wall = new Wall(500,500,width, height,direction);
+    var wall = new partialWall(500,500,width, height,direction, pdirection);
     wall.on('mouseover', function() {
 	document.body.style.cursor = 'pointer';
     });
