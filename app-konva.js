@@ -63,7 +63,8 @@ const mTriangle = function(x, y, color) {
     }
     });
 }
-const someTrianglesWidth = function(x, y, width, height) {
+// draws some triangles
+const someTriangles = function(x, y, width, height) {
     return new Konva.Shape({
 	sceneFunc: function(context) {
     var j = 2;
@@ -100,7 +101,7 @@ const someTrianglesWidth = function(x, y, width, height) {
     }
     });
 }
-
+// Complete walls
 const Wall = function(x,y,width,height,direction=-1) {
     return new Konva.Shape({
 	sceneFunc: function(context) {
@@ -163,10 +164,10 @@ const drawGraph = function() {
   layer.add(horizontalLine);
 
 }
-
+// stairs
 const stairs = function(x, y, width, height, direction = -1) {
   return new Konva.Shape({
-sceneFunc: function(context) {
+    sceneFunc: function(context) {
     context.beginPath();
     context.moveTo(x,y);
     for (j = 0; j < height; j++) {
@@ -178,11 +179,11 @@ sceneFunc: function(context) {
       }
     }
     context.fillStrokeShape(this);
-},
-stroke: 'black',
-strokeWidth: 1,
-draggable: true,
-dragBoundFunc: function(pos) {
+  },
+  stroke: 'black',
+  strokeWidth: 1,
+  draggable: true,
+  dragBoundFunc: function(pos) {
     var newX = Math.floor(pos.x / 20);
     var newY = Math.floor(pos.y / 10);
     return {
@@ -192,6 +193,7 @@ dragBoundFunc: function(pos) {
   }
   });
 }
+
 // spawns a tile on a button click
 function spawnTile() {
   tile = new mTriangle (500, 500, 'black');
@@ -207,7 +209,7 @@ function spawnTile() {
 function spawnSomeTiles() {
     let width = Math.floor(parseInt($('#width').val()));
     let height = Math.floor(parseInt($('#height').val()));
-    var group = new someTrianglesWidth(500, 500, width, height);
+    var group = new someTriangles(500, 500, width, height);
     group.on('mouseover', function() {
 	document.body.style.cursor = 'pointer';
     });
@@ -216,7 +218,7 @@ function spawnSomeTiles() {
     });
     layer.add(group);
 }
-
+// spawn a wall
 function spawnWall() {
     let width = Math.floor(parseInt($('#WallWidth').val()));
     let height = Math.floor(parseInt($('#WallHeight').val()));
@@ -236,7 +238,7 @@ function spawnWall() {
     });
     layer.add(wall);
 }
-
+// spawn a set of stairs 
 function spawnStairs() {
     let width = Math.floor(parseInt($('#stairWidth').val()));
     let height = Math.floor(parseInt($('#stairHeight').val()));
