@@ -57,16 +57,18 @@ const someTriangles = function(x, y, color, width, length) {
 	sceneFunc: function(context) {
 	    context.beginPath();
 	    context.moveTo(x, y);
-      for (i = 0; i <= width; i++){
-        for (j = 0; j <= height; j++) {
-          context.lineTo((x + i*20) + T_SIZE*2, (y - j*10 + i*10) + T_SIZE);
-	        context.lineTo((x + i*20) + T_SIZE*4, (y - j*10 + i*10));
-	        context.lineTo((x + i*20) + T_SIZE*2, (y - j*10 + i*10) - T_SIZE);
-	        context.lineTo((x + i*20), (y - j*10 + i*10));
-	        context.closePath();
-	        context.fillStrokeShape(this);
-        }
-      }
+	    for (i = 0; i <= width; i++) {
+		    let xs = T_SIZE*2 + T_SIZE*i*2;
+		    let ys = T_SIZE + T_SIZE*i;
+		    context.lineTo(x + xs, y + ys);
+		    context.lineTo(x + xs * 2, y);
+		    context.lineTo(x + xs, y - ys);
+		    context.lineTo(x, y);
+		    context.closePath();
+		    context.fillStrokeShape(this);
+	    }
+	    
+		 
 	},
 	stroke: color,
   strokeWidth: 1,
@@ -121,16 +123,17 @@ function spawnTile() {
   layer.add(tile);
 }
 function spawnSomeTiles() {
-  let width = Math.floor(parseInt($('#width').text()));
-  let height = Math.floor(parseInt($('#height').text()));
-  var tile = new someTriangle(stage.width() - 50, stage.height() - 50, 'black', width, height);
-  tile.on('mouseover', function() {
-      document.body.style.cursor = 'pointer';
-  });
-  tile.on('mouseout', function() {
-      document.body.style.cursor = 'default';
-  });
-  layer.add(tile);
+    let width = Math.floor(parseInt($('#width').val()));
+    let height = Math.floor(parseInt($('#height').val()));
+    var tile = new someTriangles(stage.width() - 50, stage.height() - 50, 'black', width, height);
+    console.log(tile);
+    tile.on('mouseover', function() {
+	document.body.style.cursor = 'pointer';
+    });
+    tile.on('mouseout', function() {
+	document.body.style.cursor = 'default';
+    });
+    layer.add(tile);
 }
 drawGraph();
 stage.add(layer);
