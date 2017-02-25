@@ -233,8 +233,8 @@ function spawnWall() {
 }
 
 function spawnStairs() {
-  let width = Math.floor(parseInt($('#WallWidth').val()));
-  let height = Math.floor(parseInt($('#WallHeight').val()));
+  let width = Math.floor(parseInt($('#stairWidth').val()));
+  let height = Math.floor(parseInt($('#stairHeight').val()));
   var stair = new stairs(500,500,width, height);
   stair.on('mouseover', function() {
 document.body.style.cursor = 'pointer';
