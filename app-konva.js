@@ -233,9 +233,15 @@ function spawnWall() {
 }
 
 function spawnStairs() {
-  let width = Math.floor(parseInt($('#stairWidth').val()));
-  let height = Math.floor(parseInt($('#stairHeight').val()));
-  var stair = new stairs(500,500,width, height);
+    let width = Math.floor(parseInt($('#stairWidth').val()));
+    let height = Math.floor(parseInt($('#stairHeight').val()));
+    let direction = document.getElementsByName('stairDirections')[0].checked;
+    if (direction) {// stairs right
+	direction = 1;
+    } else { // stairs lefft
+	directionn = -1;
+    }
+    var stair = new stairs(500,500,width, height, direction);
   stair.on('mouseover', function() {
 document.body.style.cursor = 'pointer';
   });
