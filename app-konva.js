@@ -175,7 +175,7 @@ function spawnTile() {
 // spawn a grid of tiles
 function spawnSomeTiles() {
     let width = Math.floor(parseInt($('#width').val()));
-    let height = Math.floor(parseInt($('#height').val()));
+    let height = Math.floor(2*parseInt($('#height').val()));
     var group = new someTrianglesWidth(500, 500, width, height);
     group.on('mouseover', function() {
 	document.body.style.cursor = 'pointer';
