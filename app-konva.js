@@ -303,6 +303,20 @@ drawGraph();
 // add the layer to stage
 stage.add(layer);
 
+/* Saving and Loading */
+const save = function() {
+    let fileParts = [stage.toJSON()];
+    let b = new Blob(fileParts, {type: 'text/plain'}); // file blob
+    let dlink = window.URL.createObjectURL(b); // create a url for it
+
+    let btn = document.createElement('a'); // create link to download
+    document.body.append(btn);
+    btn.setAttribute('href', dlink); // point to dlink
+    // the 2nd argument is the name of the downloaded file
+    btn.setAttribute('download', 'download.json');
+    btn.click(); // prompt for download
+    btn.remove(); // clean up
+}
 // wire up buttons to spawn functions
 $(document).ready(function(){
     $('#tile').click(function(){
@@ -318,7 +332,11 @@ $(document).ready(function(){
 	stage.add(layer);
     });
     $('#Stairs').click(function() {
-  spawnStairs();
-  stage.add(layer);
+	spawnStairs();
+	stage.add(layer);
     });
+    $('#saveBtn').click(function() {
+	save();
+    });
+    
 });
