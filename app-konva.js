@@ -98,15 +98,14 @@ const someTrianglesWidth = function(x, y, width, height) {
     });
 }
 
-const Wall = function(x,y,width,height,direction=1) {
+const Wall = function(x,y,width,height,direction=-1) {
     return new Konva.Shape({
 	sceneFunc: function(context) {
 	    context.beginPath();
 	    context.moveTo(x,y);
 	    context.lineTo(x, y - T_SIZE*height);
-	    context.lineTo(x + direction*T_SIZE*2*width, y - T_SIZE*height - T_SIZE);
-	    context.lineTo(x + direction*T_SIZE*2*width, y - T_SIZE);
-	    context.lineTo(x,y);
+	    context.lineTo(x +  direction*T_SIZE*2*width, y - (T_SIZE)*(height+width));
+	    context.lineTo(x + direction*T_SIZE*2*width, y - T_SIZE * width);
 	    context.closePath();
 	    context.fillStrokeShape(this);
 	},
