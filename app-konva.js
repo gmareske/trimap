@@ -98,14 +98,14 @@ const someTrianglesWidth = function(x, y, width, height) {
     });
 }
 
-const Wall = function(x,y,width,height) {
+const Wall = function(x,y,width,height,direction=1) {
     return new Konva.Shape({
 	sceneFunc: function(context) {
 	    context.beginPath();
 	    context.moveTo(x,y);
 	    context.lineTo(x, y - T_SIZE*height);
-	    context.lineTo(x + T_SIZE*2*width, y - T_SIZE*height - T_SIZE);
-	    context.lineTo(x + T_SIZE*2*width, y - T_SIZE);
+	    context.lineTo(x + direction*T_SIZE*2*width, y - T_SIZE*height - T_SIZE);
+	    context.lineTo(x + direction*T_SIZE*2*width, y - T_SIZE);
 	    context.lineTo(x,y);
 	    context.closePath();
 	    context.fillStrokeShape(this);
@@ -182,8 +182,8 @@ function spawnSomeTiles() {
 }
 
 function spawnWall() {
-    let width = 1;
-    let height = 1;
+    let width = Math.floor(parseInt($('#WallWidth').val()));
+    let height = Math.floor(parseInt($('#WallHeight').val()));
     var wall = new Wall(500,500,width, height);
     wall.on('mouseover', function() {
 	document.body.style.cursor = 'pointer';
