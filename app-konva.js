@@ -3,7 +3,10 @@ var stage = new Konva.Stage({
     width: 1000,
     height: 1000
 });
-
+const DIRECTION = {
+  RIGHT: -1,
+  LEFT: 1
+};
 // set up layer
 var layer = new Konva.Layer();
 // size of triangles
@@ -166,12 +169,14 @@ const stairs = function(x, y, width, height, direction = -1) {
 sceneFunc: function(context) {
     context.beginPath();
     context.moveTo(x,y);
-    for (i = 1; i <= 5; i++){
-    context.lineTo(x + direction*width*2*T_SIZE, y - T_SIZE*width);
-    context.lineTo(x + direction*width*2*T_SIZE + 4 *i, y - T_SIZE*width + 6 * i);
-    context.lineTo(x + 4*i, y +6 *i);
-    context.closePath();
-  }
+    for (j = 0; j < height; j++) {
+      for (i = 1; i <= 5; i++){
+        context.lineTo(x + direction*width*2*T_SIZE, y - T_SIZE*width);
+        context.lineTo(x + direction* (width*2*T_SIZE + 4*i + j * 20), y - T_SIZE*width + 6* i + j*30);
+        context.lineTo(x + direction*(4*i + j*20), y +6*i + j*30);
+        context.closePath();
+      }
+    }
     context.fillStrokeShape(this);
 },
 stroke: 'black',
@@ -214,12 +219,12 @@ function spawnSomeTiles() {
 
 function spawnWall() {
     let width = Math.floor(parseInt($('#WallWidth').val()));
-    let height = Math.floor(2 * parseInt($('#WallHeight').val()));
+    let height = Math.floor(parseInt($('#WallHeight').val()));
     let direction = document.getElementsByName('wallDirections')[0].checked;
     if (direction) { // if right is checked
-	direction = -1;
+	     direction = DIRECTION.RIGHT;
     } else { // left wall
-	direction = 1
+	     direction = DIRECTION.LEFT;
     }
 
     var wall = new Wall(500,500,width, height,direction);
@@ -237,10 +242,11 @@ function spawnStairs() {
     let height = Math.floor(parseInt($('#stairHeight').val()));
     let direction = document.getElementsByName('stairDirections')[0].checked;
     if (direction) {// stairs right
-	direction = 1;
+	     direction = DIRECTION.RIGHT;
     } else { // stairs lefft
-	directionn = -1;
+	     direction = DIRECTION.LEFT;
     }
+  console.log(direction);
     var stair = new stairs(500,500,width, height, direction);
   stair.on('mouseover', function() {
     document.body.style.cursor = 'pointer';
