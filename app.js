@@ -17,6 +17,9 @@ var drawLine  = function(x1, y1, x2, y2) {
 const drawGraph = function() {
     let mult = C_HEIGHT / N_LINES;
     ctx.strokeStyle = "rgb(222, 222, 222)";
+    for (i = 0; i <= N_LINES * 2; i++) {
+	drawLine( 0.5 * mult * i, 0, 0.5 * mult * i, C_HEIGHT);
+    }
     for (i = 0; i <= N_LINES; i++) {
 	drawLine(mult * i, 0, mult * i, C_HEIGHT);
 	drawLine(0, mult * i, mult * i, 0);
