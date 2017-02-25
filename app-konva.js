@@ -126,6 +126,31 @@ const Wall = function(x,y,width,height,direction=-1) {
     }
     });
 }
+// partial wall
+const partialWall = function(x,y,width,height,direction=-1) {
+  return new Konva.Shape({
+sceneFunc: function(context) {
+    context.beginPath();
+    context.moveTo(x,y);
+    context.lineTo(x, y - T_SIZE*height);
+    context.lineTo(x +  direction*T_SIZE*2*width, y - (T_SIZE)*(height+width));
+    context.lineTo(x + direction*T_SIZE*2*width, y - T_SIZE * width);
+    context.closePath();
+    context.fillStrokeShape(this);
+},
+stroke: 'black',
+strokeWidth: 1,
+draggable: true,
+dragBoundFunc: function(pos) {
+    var newX = Math.floor(pos.x / 20);
+    var newY = Math.floor(pos.y / 10);
+    return {
+      x: newX * 20,
+      y: newY * 10
+    };
+  }
+  });
+}
 // draw the graph of tiles on a layer
 const drawGraph = function() {
   for (i = 0; i <= stage.width(); i += 2*T_SIZE) {
@@ -238,7 +263,7 @@ function spawnWall() {
     });
     layer.add(wall);
 }
-// spawn a set of stairs 
+// spawn a set of stairs
 function spawnStairs() {
     let width = Math.floor(parseInt($('#stairWidth').val()));
     let height = Math.floor(parseInt($('#stairHeight').val()));
