@@ -42,6 +42,10 @@ const mTriangle = function(x, y, color) {
 	stroke: color,
   strokeWidth: 1,
   draggable: true,
+  shadowColor: 'black',
+  shadowBlur: 3,
+  shadowOffset: {x : 3, y : 3},
+  shadowOpacity: 1,
   dragBoundFunc: function(pos) {
       var newX = Math.floor(pos.x / 20);
       if (newX % 2 === 0){
@@ -75,6 +79,10 @@ const someTrianglesWidth = function(x, y, width, height) {
 	stroke: 'black',
   strokeWidth: 1,
   draggable: true,
+  shadowColor: 'black',
+  shadowBlur: 3,
+  shadowOffset: {x : 3, y : 3},
+  shadowOpacity: 1,
   dragBoundFunc: function(pos) {
       var newX = Math.floor(pos.x / 20);
       if (newX % 2 === 0){
