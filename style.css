@@ -16,3 +16,6 @@
 input {
   background-color: #fdf6e3;
 }
+* {
+  font-family: 'Old Standard TT', serif;
+}
