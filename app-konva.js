@@ -4,9 +4,12 @@ var stage = new Konva.Stage({
     height: 1000
 });
 
+// set up layer
 var layer = new Konva.Layer();
+// size of triangles
 const T_SIZE = 10;
 
+// custom shape for triangles on the graph, these dont move
 const Triangle = function(x, y, color) {
     return new Konva.Shape({
 	sceneFunc: function(context) {
@@ -23,6 +26,7 @@ const Triangle = function(x, y, color) {
   strokeWidth: 1
     });
 }
+// custom shape that can be dragged on the grid
 const mTriangle = function(x, y, color) {
     return new Konva.Shape({
 	sceneFunc: function(context) {
@@ -52,6 +56,7 @@ const mTriangle = function(x, y, color) {
     }
     });
 }
+<<<<<<< HEAD
 const someTrianglesWidth = function(x, y, width, height) {
     return new Konva.Shape({
 	sceneFunc: function(context) {
@@ -67,6 +72,26 @@ const someTrianglesWidth = function(x, y, width, height) {
     }
   }
     context.fillStrokeShape(this);
+=======
+// a grid of triangles
+const someTriangles = function(x, y, color, width, length) {
+    return new Konva.Shape({
+	sceneFunc: function(context) {
+	    context.beginPath();
+	    context.moveTo(x, y);
+	    for (i = 0; i <= width; i++) {
+		    let xs = T_SIZE*2 + T_SIZE*i*2;
+		    let ys = T_SIZE + T_SIZE*i;
+		    context.lineTo(x + xs, y + ys);
+		    context.lineTo(x + xs * 2, y);
+		    context.lineTo(x + xs, y - ys);
+		    context.lineTo(x, y);
+		    context.closePath();
+		    context.fillStrokeShape(this);
+	    }
+
+
+>>>>>>> refs/remotes/origin/master
 	},
 	stroke: 'black',
   strokeWidth: 1,
@@ -86,6 +111,10 @@ const someTrianglesWidth = function(x, y, width, height) {
     });
 }
 
+<<<<<<< HEAD
+=======
+// draw the graph of tiles on a layer
+>>>>>>> refs/remotes/origin/master
 const drawGraph = function() {
   for (i = 0; i <= stage.width(); i += 2*T_SIZE) {
     var verticalLine = new Konva.Line({
@@ -123,6 +152,8 @@ const drawGraph = function() {
   layer.add(horizontalLine);
 
 }
+
+// spawns a tile on a button click
 function spawnTile() {
   tile = new mTriangle (500, 500, 'black');
   tile.on('mouseover', function() {
@@ -133,6 +164,7 @@ function spawnTile() {
   });
   layer.add(tile);
 }
+// spawn a grid of tiles
 function spawnSomeTiles() {
     let width = Math.floor(parseInt($('#width').val()));
     let height = Math.floor(parseInt($('#height').val()));
@@ -145,9 +177,13 @@ function spawnSomeTiles() {
     });
     layer.add(group);
 }
+
+// draw the graph
 drawGraph();
+// add the layer to stage
 stage.add(layer);
 
+// wire up buttons to spawn functions
 $(document).ready(function(){
   $('#tile').click(function(){
     spawnTile();
@@ -158,3 +194,7 @@ $(document).ready(function(){
     stage.add(layer);
   });
 });
+/*            shadowColor: 'black',
+            shadowBlur: 3,
+            shadowOffset: {x : 3, y : 3},
+            shadowOpacity: 1, */
