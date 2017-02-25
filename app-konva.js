@@ -67,8 +67,8 @@ const someTriangles = function(x, y, color, width, length) {
 		    context.closePath();
 		    context.fillStrokeShape(this);
 	    }
-	    
-		 
+
+
 	},
 	stroke: color,
   strokeWidth: 1,
@@ -148,3 +148,7 @@ $(document).ready(function(){
     stage.add(layer);
   });
 });
+/*            shadowColor: 'black',
+            shadowBlur: 3,
+            shadowOffset: {x : 3, y : 3},
+            shadowOpacity: 1, */
