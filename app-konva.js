@@ -46,7 +46,7 @@ const mTriangle = function(x, y, color) {
         var newY = Math.floor(pos.y / 20);
       }
       return {
-        x: newX * 20 +20,
+        x: newX * 20,
         y: newY * 20
       };
     }
