@@ -214,8 +214,15 @@ function spawnSomeTiles() {
 
 function spawnWall() {
     let width = Math.floor(parseInt($('#WallWidth').val()));
-    let height = Math.floor(parseInt($('#WallHeight').val()));
-    var wall = new Wall(500,500,width, height);
+    let height = Math.floor(2 * parseInt($('#WallHeight').val()));
+    let direction = document.getElementsByName('wallDirections')[0].checked;
+    if (direction) { // if right is checked
+	direction = -1;
+    } else { // left wall
+	direction = 1
+    }
+    
+    var wall = new Wall(500,500,width, height,direction);
     wall.on('mouseover', function() {
 	document.body.style.cursor = 'pointer';
     });
