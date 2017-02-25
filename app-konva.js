@@ -37,7 +37,19 @@ const mTriangle = function(x, y, color) {
 	},
 	stroke: color,
   strokeWidth: 1,
-  draggable: true
+  draggable: true,
+  dragBoundFunc: function(pos) {
+      var newX = Math.floor(pos.x / 20);
+      if (newX % 2 === 0){
+        var newY = Math.floor(pos.y / 20) + 0.5;
+      } else {
+        var newY = Math.floor(pos.y / 20);
+      }
+      return {
+        x: newX * 20 +20,
+        y: newY * 20
+      };
+    }
     });
 }
 const someTriangles = function(x, y, color, width, length) {
@@ -99,7 +111,7 @@ const drawGraph = function() {
 
 }
 function spawnTile() {
-  var tile = new mTriangle(stage.width() - 50, stage.height() - 50, 'black');
+  tile = new mTriangle (500, 500, 'black');
   tile.on('mouseover', function() {
       document.body.style.cursor = 'pointer';
   });
