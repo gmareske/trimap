@@ -161,6 +161,32 @@ const drawGraph = function() {
 
 }
 
+const stairs = function(x, y, width, height, direction = 1) {
+  return new Konva.Shape({
+sceneFunc: function(context) {
+    context.beginPath();
+    context.moveTo(x,y);
+    for (i = 1; i <= 5; i++){
+    context.lineTo(x + width*2*T_SIZE, y - T_SIZE*width);
+    context.lineTo(x + width*2*T_SIZE + 4 *i, y - T_SIZE*width + 6 * i);
+    context.lineTo(x + 4*i, y +6 *i);
+    context.closePath();
+  }
+    context.fillStrokeShape(this);
+},
+stroke: 'black',
+strokeWidth: 1,
+draggable: true,
+dragBoundFunc: function(pos) {
+    var newX = Math.floor(pos.x / 20);
+    var newY = Math.floor(pos.y / 10);
+    return {
+      x: newX * 20,
+      y: newY * 10
+    };
+  }
+  });
+}
 // spawns a tile on a button click
 function spawnTile() {
   tile = new mTriangle (500, 500, 'black');
@@ -199,6 +225,18 @@ function spawnWall() {
     layer.add(wall);
 }
 
+function spawnStairs() {
+  let width = Math.floor(parseInt($('#WallWidth').val()));
+  let height = Math.floor(parseInt($('#WallHeight').val()));
+  var stair = new stairs(500,500,width, height);
+  stair.on('mouseover', function() {
+document.body.style.cursor = 'pointer';
+  });
+  stair.on('mouseout', function() {
+document.body.style.cursor = 'default';
+  });
+  layer.add(stair);
+}
 // draw the graph
 drawGraph();
 // add the layer to stage
