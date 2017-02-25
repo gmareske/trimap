@@ -5,7 +5,7 @@ var stage = new Konva.Stage({
 });
 
 var layer = new Konva.Layer();
-const T_SIZE = 20;
+const T_SIZE = 10;
 
 const Triangle = function(x, y) {
     return new Konva.Shape({
@@ -51,7 +51,7 @@ const drawGraph = function() {
     });
     verticalLine.move ({
       x: 20,
-      y: 200
+      y: 20
     });
     layer.add(verticalLine);
   }
@@ -61,7 +61,7 @@ const drawGraph = function() {
          triangle = new Triangle(i, j);
          triangle.move ({
            x: 20,
-           y: 220
+           y: 30
          });
          layer.add(triangle);
        }
@@ -74,7 +74,7 @@ const drawGraph = function() {
 
   horizontalLine.move({
     x: 20,
-    y: 200
+    y: 20
   });
   layer.add(horizontalLine);
 }
