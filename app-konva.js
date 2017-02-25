@@ -33,7 +33,7 @@ const drawGraph = function() {
     });
     verticalLine.move ({
       x: 20,
-      y: 200
+      y: 20
     });
     layer.add(verticalLine);
   }
@@ -43,7 +43,7 @@ const drawGraph = function() {
          var triangle = new Triangle(i, j);
          triangle.move ({
            x: 20,
-           y: 210
+           y: 30
          });
          layer.add(triangle);
        }
@@ -56,7 +56,7 @@ const drawGraph = function() {
 
   horizontalLine.move({
     x: 20,
-    y: 200
+    y: 20
   });
   layer.add(horizontalLine);
 
