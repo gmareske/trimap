@@ -113,10 +113,16 @@ const Wall = function(x,y,width,height,direction=1) {
 	stroke: 'black',
 	strokeWidth: 1,
 	draggable: true,
-	
+  dragBoundFunc: function(pos) {
+      var newX = Math.floor(pos.x / 20);
+      var newY = Math.floor(pos.y / 10);
+      return {
+        x: newX * 20,
+        y: newY * 10
+      };
+    }
     });
 }
-
 // draw the graph of tiles on a layer
 const drawGraph = function() {
   for (i = 0; i <= stage.width(); i += 2*T_SIZE) {
