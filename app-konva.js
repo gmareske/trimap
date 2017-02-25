@@ -60,18 +60,6 @@ const drawGraph = function() {
   });
   layer.add(horizontalLine);
 
-  horizontalLine = new Konva.Line({
-    points: [0, stage.height(), stage.width(), stage.height()],
-    stroke: 'rgb(222, 222, 222)',
-    strokewidth: 1
-  })
-
-  horizontalLine.move({
-    x: 20,
-    y: 100
-  });
-
-  layer.add(horizontalLine);
 }
 
 drawGraph();
