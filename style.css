@@ -19,3 +19,8 @@ input {
 * {
   font-family: 'Old Standard TT', serif;
 }
+.btn-warning {
+  background-color: #fdf6e3;
+  border: none;
+  color: black;
+}
