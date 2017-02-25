@@ -23,21 +23,60 @@ const Triangle = function(x, y) {
     });
 }
 
-const drawGraph = function() {
+/*const drawGraph = function() {
     // adds a bunch of triangles to make our graph
     for (i = 0; i <= stage.width(); i += T_SIZE * 4) {
-	for (j = 0; j <= stage.height(); j += T_SIZE * 2 ) {
-	    layer.add(new Triangle(i, j));
-	}
+	     for (j = 0; j <= stage.height(); j += T_SIZE * 2 ) {
+
+	        layer.add(new Triangle(i, j));
+	       }
     }
     // should add the vertical lines but it doesn't
-    for (i = 0; i <= stage.width(); i += T_SIZE) {
+    for (i = 0; i <= stage.width(); i += 2*T_SIZE) {
 	layer.add(new Konva.Line({
-	    points: [i, stage.height()],
+	    points: [i, 0, i, stage.height()],
 	    stroke: 'rgb(222, 222, 222)',
 	    strokeWidth: 2
 	}));
     }
+
+}*/
+
+const drawGraph = function() {
+  for (i = 0; i <= stage.width(); i += 2*T_SIZE) {
+    verticalLine = new Konva.Line({
+      points: [i , 0, i , stage.height()],
+      stroke: 'rgb(222, 222, 222)',
+      strokeWidth: 2
+    });
+    verticalLine.move ({
+      x: 20,
+      y: 200
+    });
+    layer.add(verticalLine);
+  }
+
+  for (i = 0; i <= stage.width(); i += T_SIZE * 4) {
+     for (j = 0; j <= stage.height(); j += T_SIZE * 2 ) {
+         triangle = new Triangle(i, j);
+         triangle.move ({
+           x: 20,
+           y: 220
+         });
+         layer.add(triangle);
+       }
+  }
+  horizontalLine = new Konva.Line({
+    points: [0, 0, stage.width(), 0],
+    stroke: 'rgb(222, 222, 222)',
+    strokewidth: 2
+  })
+
+  horizontalLine.move({
+    x: 20,
+    y: 200
+  });
+  layer.add(horizontalLine);
 }
 
 drawGraph();
