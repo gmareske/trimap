@@ -40,6 +40,27 @@ const mTriangle = function(x, y, color) {
   draggable: true
     });
 }
+const someTriangles = function(x, y, color, width, length) {
+    return new Konva.Shape({
+	sceneFunc: function(context) {
+	    context.beginPath();
+	    context.moveTo(x, y);
+      for (i = 0; i <= width; i++){
+        for (j = 0; j <= height; j++) {
+          context.lineTo((x + i*20) + T_SIZE*2, (y - j*10 + i*10) + T_SIZE);
+	        context.lineTo((x + i*20) + T_SIZE*4, (y - j*10 + i*10));
+	        context.lineTo((x + i*20) + T_SIZE*2, (y - j*10 + i*10) - T_SIZE);
+	        context.lineTo((x + i*20), (y - j*10 + i*10));
+	        context.closePath();
+	        context.fillStrokeShape(this);
+        }
+      }
+	},
+	stroke: color,
+  strokeWidth: 1,
+  draggable: true
+    });
+}
 const drawGraph = function() {
   for (i = 0; i <= stage.width(); i += 2*T_SIZE) {
     var verticalLine = new Konva.Line({
@@ -87,12 +108,28 @@ function spawnTile() {
   });
   layer.add(tile);
 }
+function spawnSomeTiles() {
+  let width = Math.floor(parseInt($('#width').text()));
+  let height = Math.floor(parseInt($('#height').text()));
+  var tile = new someTriangle(stage.width() - 50, stage.height() - 50, 'black', width, height);
+  tile.on('mouseover', function() {
+      document.body.style.cursor = 'pointer';
+  });
+  tile.on('mouseout', function() {
+      document.body.style.cursor = 'default';
+  });
+  layer.add(tile);
+}
 drawGraph();
 stage.add(layer);
 
 $(document).ready(function(){
   $('#tile').click(function(){
     spawnTile();
+    stage.add(layer);
+  });
+  $('#TileGrid').click(function(){
+    spawnSomeTiles();
     stage.add(layer);
   });
 });
