@@ -52,29 +52,40 @@ const mTriangle = function(x, y, color) {
     }
     });
 }
-const someTriangles = function(x, y, color, width, length) {
+const someTrianglesWidth = function(x, y, width, height) {
     return new Konva.Shape({
 	sceneFunc: function(context) {
-	    context.beginPath();
-	    context.moveTo(x, y);
-	    for (i = 0; i <= width; i++) {
-		    let xs = T_SIZE*2 + T_SIZE*i*2;
-		    let ys = T_SIZE + T_SIZE*i;
-		    context.lineTo(x + xs, y + ys);
-		    context.lineTo(x + xs * 2, y);
-		    context.lineTo(x + xs, y - ys);
-		    context.lineTo(x, y);
-		    context.closePath();
-		    context.fillStrokeShape(this);
-	    }
-	    
-		 
+    var j = 2;
+    context.beginPath();
+    context.moveTo(x, y);
+    for (j = 0; j < height; j++){
+    for (i = 1; i <= width; i++){
+      context.lineTo(x + i * 2 * T_SIZE, y - i * T_SIZE);
+      context.lineTo(x + (i + 1) * 2 * T_SIZE + 2 * j * T_SIZE, y - (i - 1) * T_SIZE + j * T_SIZE);
+      context.lineTo(x +  (j+1)* 2 * T_SIZE, y + (j+1) * T_SIZE);
+      context.closePath();
+    }
+  }
+    context.fillStrokeShape(this);
 	},
-	stroke: color,
+	stroke: 'black',
   strokeWidth: 1,
-  draggable: true
+  draggable: true,
+  dragBoundFunc: function(pos) {
+      var newX = Math.floor(pos.x / 20);
+      if (newX % 2 === 0){
+        var newY = Math.floor(pos.y / 20) + 0.5;
+      } else {
+        var newY = Math.floor(pos.y / 20);
+      }
+      return {
+        x: newX * 20,
+        y: newY * 20
+      };
+    }
     });
 }
+
 const drawGraph = function() {
   for (i = 0; i <= stage.width(); i += 2*T_SIZE) {
     var verticalLine = new Konva.Line({
@@ -125,15 +136,14 @@ function spawnTile() {
 function spawnSomeTiles() {
     let width = Math.floor(parseInt($('#width').val()));
     let height = Math.floor(parseInt($('#height').val()));
-    var tile = new someTriangles(stage.width() - 50, stage.height() - 50, 'black', width, height);
-    console.log(tile);
-    tile.on('mouseover', function() {
+    var group = new someTrianglesWidth(500, 500, width, height);
+    group.on('mouseover', function() {
 	document.body.style.cursor = 'pointer';
     });
-    tile.on('mouseout', function() {
+    group.on('mouseout', function() {
 	document.body.style.cursor = 'default';
     });
-    layer.add(tile);
+    layer.add(group);
 }
 drawGraph();
 stage.add(layer);
