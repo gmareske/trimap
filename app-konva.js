@@ -87,6 +87,12 @@ function spawnTile() {
   });
   layer.add(tile);
 }
-
 drawGraph();
 stage.add(layer);
+
+$(document).ready(function(){
+  $('#tile').click(function(){
+    spawnTile();
+    stage.add(layer);
+  });
+});
