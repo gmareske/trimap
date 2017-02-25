@@ -237,10 +237,10 @@ function spawnStairs() {
   let height = Math.floor(parseInt($('#WallHeight').val()));
   var stair = new stairs(500,500,width, height);
   stair.on('mouseover', function() {
-document.body.style.cursor = 'pointer';
+    document.body.style.cursor = 'pointer';
   });
   stair.on('mouseout', function() {
-document.body.style.cursor = 'default';
+    document.body.style.cursor = 'default';
   });
   layer.add(stair);
 }
