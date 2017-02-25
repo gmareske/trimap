@@ -31,14 +31,16 @@
   <br>
         Tiles Wide<input type="number" min="1" value="1" id="WallWidth"></input>
   <br>Tiles Tall  <input type="number" min="1" value="1" id="WallHeight"></input></input>
-  <br/><input type="radio" name="wallDirections" value="Right"/> Right
-  <input type="radio" name="wallDirections" value="Left"/> Left
-  <input type="button" value="Make Wall" id="Wall" class="list-group-item"><br>
+  <br/>  <form><input type="radio" name="wallDirections" value="Left"/> Left
+  <input type="radio" name="wallDirections" value="Right"/> Right<br></form>
+    <form><input type="radio" name="partialWallDirections" value="Up"/> Partial Up
+      <input type="radio" name="partialWallDirections" value="Down"/> Partial Down</form>
+        <input type="button" value="Make Wall" id="Wall" class="list-group-item"><br>
 
   Tiles Wide<input type="number" min="1" value="1" id="stairWidth"></input>
 <br>Tiles Long  <input type="number" min="1" value="1" id="stairHeight"></input></input>
-<br/><input type="radio" name="stairDirections" value="Right"/> Right
 <input type="radio" name="stairDirections" value="Left"/> Left
+<input type="radio" name="stairDirections" value="Right"/> Right
 <input type="button" value="Make Stairs" id="Stairs" class="list-group-item">
 
       </div>

@@ -253,7 +253,12 @@ function spawnWall() {
     } else { // left wall
 	     direction = DIRECTION.LEFT;
     }
-
+    let pdirection = document.getElementsByName('partialWallDirections')[0].checked;
+    if (pdirection) { // if up is checked
+	     pdirection = DIRECTION.RIGHT;
+    } else { // down is checked
+	     pdirection = DIRECTION.LEFT;
+    }
     var wall = new Wall(500,500,width, height,direction);
     wall.on('mouseover', function() {
 	document.body.style.cursor = 'pointer';
