@@ -4,3 +4,15 @@
 .border {
   border: 2px solid black;
 }
+.yellowish {
+  background-color: #fdf6e3;
+}
+.well {
+  background-color: #eee8df;
+}
+.list-group-item {
+  background-color: #fdf6e3;
+}
+input {
+  background-color: #fdf6e3;
+}
