@@ -98,8 +98,23 @@ const someTrianglesWidth = function(x, y, width, height) {
     });
 }
 
-const drawWall = function(x,y,width,height) {
-
+const Wall = function(x,y,width,height) {
+    return new Konva.Shape({
+	sceneFunc: function(context) {
+	    context.beginPath();
+	    context.moveTo(x,y);
+	    context.lineTo(x, y - T_SIZE*height);
+	    context.lineTo(x + T_SIZE*2*width, y - T_SIZE*height - T_SIZE);
+	    context.lineTo(x + T_SIZE*2*width, y - T_SIZE);
+	    context.lineTo(x,y);
+	    context.closePath();
+	    context.fillStrokeShape(this);
+	},
+	stroke: 'black',
+	strokeWidth: 1,
+	draggable: true,
+	
+    });
 }
 
 // draw the graph of tiles on a layer
@@ -166,6 +181,19 @@ function spawnSomeTiles() {
     layer.add(group);
 }
 
+function spawnWall() {
+    let width = 1;
+    let height = 1;
+    var wall = new Wall(500,500,width, height);
+    wall.on('mouseover', function() {
+	document.body.style.cursor = 'pointer';
+    });
+    wall.on('mouseout', function() {
+	document.body.style.cursor = 'default';
+    });
+    layer.add(wall);
+}
+
 // draw the graph
 drawGraph();
 // add the layer to stage
@@ -173,14 +201,18 @@ stage.add(layer);
 
 // wire up buttons to spawn functions
 $(document).ready(function(){
-  $('#tile').click(function(){
-    spawnTile();
-    stage.add(layer);
-  });
-  $('#TileGrid').click(function(){
-    spawnSomeTiles();
-    stage.add(layer);
-  });
+    $('#tile').click(function(){
+	spawnTile();
+	stage.add(layer);
+    });
+    $('#TileGrid').click(function(){
+	spawnSomeTiles();
+	stage.add(layer);
+    });
+    $('#Wall').click(function() {
+	spawnWall();
+	stage.add(layer);
+    });
 });
 /*            shadowColor: 'black',
             shadowBlur: 3,
