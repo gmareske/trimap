@@ -4,9 +4,12 @@ var stage = new Konva.Stage({
     height: 1000
 });
 
+// set up layer
 var layer = new Konva.Layer();
+// size of triangles
 const T_SIZE = 10;
 
+// custom shape for triangles on the graph, these dont move
 const Triangle = function(x, y, color) {
     return new Konva.Shape({
 	sceneFunc: function(context) {
@@ -23,6 +26,7 @@ const Triangle = function(x, y, color) {
   strokeWidth: 1
     });
 }
+// custom shape that can be dragged on the grid
 const mTriangle = function(x, y, color) {
     return new Konva.Shape({
 	sceneFunc: function(context) {
@@ -52,6 +56,7 @@ const mTriangle = function(x, y, color) {
     }
     });
 }
+// a grid of triangles
 const someTriangles = function(x, y, color, width, length) {
     return new Konva.Shape({
 	sceneFunc: function(context) {
@@ -75,6 +80,8 @@ const someTriangles = function(x, y, color, width, length) {
   draggable: true
     });
 }
+
+// draw the graph of tiles on a layer
 const drawGraph = function() {
   for (i = 0; i <= stage.width(); i += 2*T_SIZE) {
     var verticalLine = new Konva.Line({
@@ -112,6 +119,8 @@ const drawGraph = function() {
   layer.add(horizontalLine);
 
 }
+
+// spawns a tile on a button click
 function spawnTile() {
   tile = new mTriangle (500, 500, 'black');
   tile.on('mouseover', function() {
@@ -122,6 +131,7 @@ function spawnTile() {
   });
   layer.add(tile);
 }
+// spawn a grid of tiles
 function spawnSomeTiles() {
     let width = Math.floor(parseInt($('#width').val()));
     let height = Math.floor(parseInt($('#height').val()));
@@ -135,9 +145,13 @@ function spawnSomeTiles() {
     });
     layer.add(tile);
 }
+
+// draw the graph
 drawGraph();
+// add the layer to stage
 stage.add(layer);
 
+// wire up buttons to spawn functions
 $(document).ready(function(){
   $('#tile').click(function(){
     spawnTile();
