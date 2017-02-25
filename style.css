@@ -13,6 +13,9 @@
 .list-group-item {
   background-color: #fdf6e3;
 }
+.list-group-item:hover {
+  border: 5px solid #fdf6e3;
+}
 input {
   background-color: #fdf6e3;
 }
