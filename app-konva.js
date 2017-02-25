@@ -263,8 +263,8 @@ $(document).ready(function(){
 	spawnWall();
 	stage.add(layer);
     });
+    $('#Stairs').click(function() {
+  spawnStairs();
+  stage.add(layer);
+    });
 });
-/*            shadowColor: 'black',
-            shadowBlur: 3,
-            shadowOffset: {x : 3, y : 3},
-            shadowOpacity: 1, */
