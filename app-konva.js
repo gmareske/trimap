@@ -131,7 +131,7 @@ const Wall = function(x,y,width,height,direction=-1) {
 // partial wall
 const partialWall = function(x,y,width,height,direction=-1, pdirection) {
   return new Konva.Shape({
-sceneFunc: function(context) {
+    sceneFunc: function(context) {
     if (pdirection === -1 ) {
       context.beginPath();
       context.moveTo(x,y);
@@ -147,11 +147,11 @@ sceneFunc: function(context) {
       context.closePath();
       context.fillStrokeShape(this);
     }
-},
-stroke: 'black',
-strokeWidth: 1,
-draggable: true,
-dragBoundFunc: function(pos) {
+  },
+  stroke: 'black',
+  strokeWidth: 1,
+  draggable: true,
+  dragBoundFunc: function(pos) {
     var newX = Math.floor(pos.x / 20);
     var newY = Math.floor(pos.y / 10);
     return {
@@ -269,7 +269,12 @@ function spawnWall() {
     } else { // down is checked
 	     pdirection = DIRECTION.DOWN;
     }
-    var wall = new partialWall(500,500,width, height,direction, pdirection);
+    let partiallity = document.getElementsByName('partialWallDirections')[2].checked;
+    if (partiallity){
+      var wall = new Wall(500,500,width,height,direction);
+    } else {
+      var wall = new partialWall(500,500,width, height,direction, pdirection);
+    }
     wall.on('mouseover', function() {
 	document.body.style.cursor = 'pointer';
     });
@@ -338,5 +343,5 @@ $(document).ready(function(){
     $('#saveBtn').click(function() {
 	save();
     });
-    
+
 });
