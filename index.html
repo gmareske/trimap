@@ -1,12 +1,28 @@
 <html>
-  <head>
+<head>
     <meta charset="utf-8"/>
     <link href="style.css" rel="stylesheet"/>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-    
-  </head>
-  <body>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+    <title>DnD in 3D</title>
+
+</head>
+<body>
+  <div class="container-fluid text-center well">
+    <h1>TriMap</h1>
+  </div>
+  <div class="container-fluid">
     <canvas id="theCanvas" width="1000" height="1000"></canvas>
     <script src="app.js"></script>
-  </body>
+    <div class="well pull-right sidebar">
+      <ul class="list-group">
+        <li class="list-group-item">Tile</li>
+        <li class="list-group-item">Door</li>
+        <li class="list-group-item">Stairs</li>
+        <li class="list-group-item">Character</li>
+        <li class="list-group-item">Chest</li>
+      </ul>
+    </div>
+  </div>
+</body>
 </html>
