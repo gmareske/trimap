@@ -56,7 +56,6 @@ const mTriangle = function(x, y, color) {
     }
     });
 }
-<<<<<<< HEAD
 const someTrianglesWidth = function(x, y, width, height) {
     return new Konva.Shape({
 	sceneFunc: function(context) {
@@ -72,26 +71,6 @@ const someTrianglesWidth = function(x, y, width, height) {
     }
   }
     context.fillStrokeShape(this);
-=======
-// a grid of triangles
-const someTriangles = function(x, y, color, width, length) {
-    return new Konva.Shape({
-	sceneFunc: function(context) {
-	    context.beginPath();
-	    context.moveTo(x, y);
-	    for (i = 0; i <= width; i++) {
-		    let xs = T_SIZE*2 + T_SIZE*i*2;
-		    let ys = T_SIZE + T_SIZE*i;
-		    context.lineTo(x + xs, y + ys);
-		    context.lineTo(x + xs * 2, y);
-		    context.lineTo(x + xs, y - ys);
-		    context.lineTo(x, y);
-		    context.closePath();
-		    context.fillStrokeShape(this);
-	    }
-
-
->>>>>>> refs/remotes/origin/master
 	},
 	stroke: 'black',
   strokeWidth: 1,
@@ -111,10 +90,7 @@ const someTriangles = function(x, y, color, width, length) {
     });
 }
 
-<<<<<<< HEAD
-=======
 // draw the graph of tiles on a layer
->>>>>>> refs/remotes/origin/master
 const drawGraph = function() {
   for (i = 0; i <= stage.width(); i += 2*T_SIZE) {
     var verticalLine = new Konva.Line({
@@ -143,7 +119,7 @@ const drawGraph = function() {
     points: [0, 0, stage.width(), 0],
     stroke: 'rgb(222, 222, 222)',
     strokewidth: 1
-  })
+  });
 
   horizontalLine.move({
     x: 20,
