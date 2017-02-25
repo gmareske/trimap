@@ -78,7 +78,6 @@ const drawGraph = function() {
 
 }
 function spawnTile() {
-  var tile = new mTriangle(stage.width() - 50, stage.height() - 50, 'black');
   tile.on('mouseover', function() {
       document.body.style.cursor = 'pointer';
   });
@@ -87,6 +86,5 @@ function spawnTile() {
   });
   layer.add(tile);
 }
-
 drawGraph();
 stage.add(layer);
