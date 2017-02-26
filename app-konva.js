@@ -8,7 +8,6 @@ const DIRECTION = {
     LEFT: 1,
     UP: 1,
     DOWN: -1,
-<<<<<<< HEAD
   };
   // set up layer
   var layer = new Konva.Layer();
@@ -16,15 +15,6 @@ const DIRECTION = {
   const T_SIZE = 10;
   const PLAYER_LIMIT = 10;
   var playerCount = 0;
-  // custom shape for triangles on the graph, these dont move
-  const Triangle = function(x, y, color) {
-      return new Konva.Shape({
-=======
-};
-// set up layer
-var layer = new Konva.Layer();
-// size of triangles
-const T_SIZE = 10;
 
 // Door Array... these things should always be on top!
 var D_ARRAY = []
@@ -36,7 +26,6 @@ const doorsOnTop = function() {
 // custom shape for triangles on the graph, these dont move
 const Triangle = function(x, y, color) {
     return new Konva.Shape({
->>>>>>> refs/remotes/origin/master
   	sceneFunc: function(context) {
   	    context.beginPath();
   	    context.moveTo(x, y);
@@ -275,7 +264,7 @@ const Door = function(x, y, direction) {
     });
 }
 
-  const circle = function(x , y, color) {
+const circle = function(x , y, color) {
   return new Konva.Circle({
     x: x,
     y: y,
@@ -283,11 +272,8 @@ const Door = function(x, y, direction) {
     fill: color,
     stroke: 'black',
     strokeWidth: 2
-});
-
-  // spawns a tile on a button click
-  function spawnTile() {
-
+  });
+}
 // spawns a tile on a button click
 function spawnTile() {
     tile = new mTriangle (500, 500, 'black');
