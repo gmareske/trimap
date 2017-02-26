@@ -381,6 +381,17 @@ function spawnCharacter () {
     layer.add(char);
   }
 }
+function spawnNPCharacter () {
+    var char = circle(200, 200, 'black');
+    D_ARRAY.push(char);
+    char.on('mouseover', function() {
+	document.body.style.cursor = 'pointer';
+    });
+    char.on('mouseout', function() {
+	document.body.style.cursor = 'default';
+    });
+    layer.add(char);
+  }
 // draw the graph
 drawGraph();
 // add the layer to stage
@@ -432,6 +443,10 @@ $(document).ready(function(){
     });
     $('#character').click(function() {
       spawnCharacter();
+  stage.add(layer);
+    });
+    $('#npcharacter').click(function() {
+      spawnNPCharacter();
   stage.add(layer);
     });
 });
