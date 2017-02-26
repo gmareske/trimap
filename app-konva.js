@@ -343,5 +343,8 @@ $(document).ready(function(){
     $('#saveBtn').click(function() {
 	save();
     });
-
+    stage.add(layer);
+      });
+      $('#door').click(function() {
+  	spawnDoor();
 });
