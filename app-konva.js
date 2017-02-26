@@ -414,4 +414,8 @@ $(document).ready(function(){
     	spawnDoor();
 	stage.add(layer);
     });
+    $('#character').click(function() {
+      spawnCharacter();
+  stage.add(layer);
+    });
 });
