@@ -14,7 +14,13 @@ var layer = new Konva.Layer();
 // size of triangles
 const T_SIZE = 10;
 
-
+// Door Array... these things should always be on top!
+var D_ARRAY = []
+const doorsOnTop = function() {
+    D_ARRAY.map(function(d) {
+	d.moveToTop();
+    });
+}
 // custom shape for triangles on the graph, these dont move
 const Triangle = function(x, y, color) {
     return new Konva.Shape({
@@ -338,6 +344,7 @@ function spawnDoor(){
 	direction = DIRECTION.RIGHT;
     }
     var door = Door(500,500, direction);
+    D_ARRAY.push(door);
     door.on('mouseover', function() {
 	document.body.style.cursor = 'pointer';
     });
@@ -370,21 +377,26 @@ $(document).ready(function(){
     $('#tile').click(function(){
   	spawnTile();
   	stage.add(layer);
+	doorsOnTop();
     });
     $('#TileGrid').click(function(){
   	spawnSomeTiles();
   	stage.add(layer);
+	doorsOnTop();
     });
     $('#Wall').click(function() {
   	spawnWall();
   	stage.add(layer);
+	doorsOnTop();
     });
     $('#Stairs').click(function() {
   	spawnStairs();
   	stage.add(layer);
+	doorsOnTop();
     });
     $('#saveBtn').click(function() {
-  	save();
+	doorsOnTop();
+	save();
     });
     $('#door').click(function() {
     	spawnDoor();
