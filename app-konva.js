@@ -9,12 +9,12 @@ const DIRECTION = {
     UP: 1,
     DOWN: -1,
   };
-  // set up layer
-  var layer = new Konva.Layer();
-  // size of triangles
-  const T_SIZE = 10;
-  const PLAYER_LIMIT = 10;
-  var playerCount = 0;
+// set up layer
+var layer = new Konva.Layer();
+// size of triangles
+const T_SIZE = 10;
+const PLAYER_LIMIT = 10;
+var playerCount = 0;
 
 // Door Array... these things should always be on top!
 var D_ARRAY = []
@@ -268,10 +268,11 @@ const circle = function(x , y, color) {
   return new Konva.Circle({
     x: x,
     y: y,
-    radius: 20,
+    radius: 10,
     fill: color,
-    stroke: 'black',
-    strokeWidth: 2
+    stroke: color,
+    strokeWidth: 1,
+    draggable: true
   });
 }
 // spawns a tile on a button click
@@ -364,6 +365,21 @@ function spawnDoor(){
 	document.body.style.cursor = 'default';
     });
     layer.add(door);
+}
+function spawnCharacter () {
+  var colors = ['red', 'orange', 'yellow', 'green', 'blue',
+'purple', 'maroon', 'lightgray', 'gold', 'fuchsia'];
+  if (playerCount < PLAYER_LIMIT){
+    var char = circle(200, 200, colors[playerCount++]);
+    D_ARRAY.push(char);
+    char.on('mouseover', function() {
+	document.body.style.cursor = 'pointer';
+    });
+    char.on('mouseout', function() {
+	document.body.style.cursor = 'default';
+    });
+    layer.add(char);
+  }
 }
 // draw the graph
 drawGraph();
