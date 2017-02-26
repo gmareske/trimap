@@ -49,8 +49,8 @@ const mTriangle = function(x, y, color) {
   draggable: true,
   shadowColor: 'black',
   shadowBlur: 3,
-  shadowOffset: {x : 3, y : 3},
-  shadowOpacity: 0.7,
+  //  shadowOffset: {x : 3, y : 3},
+  //  shadowOpacity: 0.7,
   dragBoundFunc: function(pos) {
       var newX = Math.floor(pos.x / 20);
       if (newX % 2 === 0){
@@ -87,8 +87,8 @@ const someTriangles = function(x, y, width, height) {
   draggable: true,
   shadowColor: 'black',
   shadowBlur: 3,
-  shadowOffset: {x : 3, y : 3},
-  shadowOpacity: 0.7,
+  //shadowOffset: {x : 3, y : 3},
+  //shadowOpacity: 0.7,
   dragBoundFunc: function(pos) {
       var newX = Math.floor(pos.x / 20);
       if (newX % 2 === 0){
@@ -229,6 +229,32 @@ const stairs = function(x, y, width, height, direction = -1) {
   });
 }
 
+const door = function(x, y, direction) {
+  return new Konva.Shape({
+sceneFunc: function(context) {
+    context.beginPath();
+    context.moveTo(x,y);
+    context.lineTo(x, y - T_SIZE*4);
+    context.lineTo(x +  direction*T_SIZE*2*1, y - (T_SIZE)*5);
+    context.lineTo(x + direction*T_SIZE*2*1, y - T_SIZE * 1);
+    context.closePath();
+    context.fillStrokeShape(this);
+},
+fill: 'rgb(253,246,227)',
+stroke: 'black',
+strokeWidth: 1,
+draggable: true,
+dragBoundFunc: function(pos) {
+    var newX = Math.floor(pos.x / 20);
+    var newY = Math.floor(pos.y / 10);
+    return {
+      x: newX * 20,
+      y: newY * 10
+    };
+  }
+  });
+}
+
 // spawns a tile on a button click
 function spawnTile() {
   tile = new mTriangle (500, 500, 'black');
@@ -303,6 +329,7 @@ function spawnStairs() {
   });
   layer.add(stair);
 }
+
 // draw the graph
 drawGraph();
 // add the layer to stage
