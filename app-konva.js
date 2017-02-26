@@ -13,7 +13,8 @@
   var layer = new Konva.Layer();
   // size of triangles
   const T_SIZE = 10;
-
+  const PLAYER_LIMIT = 10;
+  var playerCount = 0;
   // custom shape for triangles on the graph, these dont move
   const Triangle = function(x, y, color) {
       return new Konva.Shape({
@@ -254,6 +255,16 @@
     }
     });
   }
+
+  const circle = function(x , y, color) {
+  return new Konva.Circle({
+    x: x,
+    y: y,
+    radius: 20,
+    fill: color,
+    stroke: 'black',
+    strokeWidth: 2
+});
 
   // spawns a tile on a button click
   function spawnTile() {
